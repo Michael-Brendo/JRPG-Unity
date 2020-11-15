@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
 
+    public LayerMask solidObjectsLayer;
+
     private bool isMoving;
 
     private Vector2 input;
@@ -37,7 +39,8 @@ public class PlayerController : MonoBehaviour
                 targetPosition.x += input.x;
                 targetPosition.y += input.y;
 
-                StartCoroutine(Move(targetPosition));
+                if (IsWalkable(targetPosition))
+                    StartCoroutine(Move(targetPosition));
             }
 
         }
@@ -59,4 +62,6 @@ public class PlayerController : MonoBehaviour
 
         isMoving = false;
     }
+
+
 }
